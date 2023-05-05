@@ -35,7 +35,7 @@ const server = http.createServer((req, res)=>{
 
 
     }
-    else if(req.url ==='/api'){
+    else if(req.url =='/api'){
 
         fs.readFile(path.join(__dirname,'public','db.json'), 'utf-8',
         (err, content)=>{
