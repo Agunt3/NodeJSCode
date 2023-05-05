@@ -37,18 +37,13 @@ if(req.url === '/'){
 else if(req.url=='/api')
 {
     // fs.readFile( path.join(__dirname,'public','db.json'),(err,data)=>{
-
     //     if (err) throw err;
-
-    //     res.writeHead(200,headers);
-		
-		
+    //     res.writeHead(200,headers);		
     //     res.end(data);
     //     })
-    const cursor = client.db("technologies
-").collection("frontendtechnologies").find({});
+    const cursor = client.db("technologies").collection("frontendtechnologies").find({});
     const results = await cursor.toArray();
-    //console.log(results);
+ 
     const js= (JSON.stringify(results));
     res.writeHead(200,headers)
     console.log(js);
