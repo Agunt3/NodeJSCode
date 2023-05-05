@@ -22,7 +22,7 @@ const server = http.createServer((req, res)=>{
 
 
     }
-    else if(req.url ==='/about.html'){
+    else if(req.url =='/about.html'){
 
        
         fs.readFile(path.join(__dirname,'public','about.html'),
