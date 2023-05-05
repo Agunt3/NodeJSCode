@@ -1,58 +1,66 @@
-const http =require('http');
+const http= require('http');
+const fs= require('fs');
 const path = require('path');
-const fs = require('fs');
-//const {MongoClient} = require('mongodb');
-//const uri ="mongodb+srv://akhila:guntupalli@cluster0.zed8ykx.mongodb.net/test";
-//const client = new MongoClient(uri);
-const server = http.createServer((req, res)=>{
+const {MongoClient} = require('mongodb');
+const uri ="mongodb+srv://akhila:guntupalli@cluster0.zed8ykx.mongodb.net/test";
+const client = new MongoClient(uri);
 
-    console.log(req.url);
-    // / or /api /about.html
-     
-    if( req.url ==='/'){
-     
-        fs.readFile(path.join(__dirname,'public','index.html'),
-        (err, content)=>{
-
-            if (err) throw err;
-            res.writeHead(200,{ 'Content-type': 'text/html'});
-            res.end(content);
-
-        });
-
-
+const DBconnect=async()=>{
+    try{
+        await client.connect();
+        console.log("db connected")
+    
     }
-    else if(req.url ==='/about.html'){
-
-       
-        fs.readFile(path.join(__dirname,'public','about.html'),
-        (err, content)=>{
-            if(err ) throw err;
-            res.writeHead(200, { 'Content-type': 'text/html'})
-            res.end(content)
-        });
-
-
-
+    catch(e){
+        console.log(e)
     }
-    else if(req.url ==='/api'){
+}
+DBconnect();
+const server   =http.createServer(async(req,res) => {
+const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "OPTIONS, POST, GET",
 
-        fs.readFile(path.join(__dirname,'public','db.json'), 'utf-8',
-        (err, content)=>{
+  
+  };
+console.log(req.url)
+if(req.url === '/'){
+    fs.readFile( path.join(__dirname,'public','index.html'),(err,data)=>{
 
-            if(err ) throw err ;
-            res.writeHead(200, { 'Content-type': 'application/json'})  
-            res.end(content);
-        });
-
-
+    if (err) throw err;
+    res.writeHead(200,{ 'Content-Type' : 'text/html'});
+    res.end(data);
     }
+ )
+ 
+}
+else if(req.url=='/api')
+{
+    // fs.readFile( path.join(__dirname,'public','db.json'),(err,data)=>{
 
-    else{
-        res.writeHead(404, { 'Content-type': 'text/html'})  
-        res.end("<h1> 404 Nothing is Here </h1>")
-    }   
+    //     if (err) throw err;
+
+    //     res.writeHead(200,headers);
+		
+		
+    //     res.end(data);
+    //     })
+    const cursor = client.db("technologies
+").collection("frontendtechnologies").find({});
+    const results = await cursor.toArray();
+    //console.log(results);
+    const js= (JSON.stringify(results));
+    res.writeHead(200,headers)
+    console.log(js);
+    res.end(js);
+
+}
+else{
+
+    res.end("Eror 404")
+}
 
 });
 
-server.listen(6363, ()=> console.log(" Great our server is runnning"));
+const PORT = process.env.PORT || 6363;
+server.listen(PORT,() => console.log(`yay the server is running finally ${PORT}`));
