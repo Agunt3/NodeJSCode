@@ -1,0 +1,49 @@
+{
+  "technologies": [
+    {
+      "id": 1,
+      "name": "ReactJS",
+      "founder": "ordan Walke",
+      "prerequisites": "HTML, CSS, Javascript",
+      "releasedDate": "05/29/2013",
+      "description": "React is a JavaScript library for building user interfaces. React is used to build single-page applications. React allows us to create reusable UI components.",
+      "webUrl": "https://legacy.reactjs.org/"
+    },
+    {
+      "id": 2,
+      "name": "Vue JS",
+      "founder": "Evan You",
+      "prerequisites": "HTML, CSS, Javascript",
+      "releasedDate": "02/01/2014",
+      "description": "Vue.js is an open-source model–view–viewmodel front end JavaScript framework for building user interfaces and single-page applications.",
+      "webUrl": "https://vuejs.org/"
+    },
+    {
+      "id": 3,
+      "name": "Angular",
+      "founder": "Miško Hevery ",
+      "prerequisites": "HTML, CSS, Javascript",
+      "releasedDate": "09/14/2016",
+      "description": "Angular is a platform for building mobile and desktop web applications. Join the community of millions of developers who build compelling user interfaces",
+      "webUrl": "https://angular.io/"
+    },
+    {
+      "id": 4,
+      "name": "Next JS",
+      "founder": "Guillermo Rauch",
+      "prerequisites": "HTML, CSS, Javascript, React",
+      "releasedDate": "10/25/2016",
+      "description": "Used by some of the world's largest companies, Next.js enables you to create full-stack Web applications by extending the latest React features, and integrating powerful Rust-based JavaScript tooling for the fastest builds.",
+      "webUrl": "https://nextjs.org/"
+    },
+    {
+      "id": 5,
+      "name": "Ember",
+      "founder": "Yehuda Katz",
+      "prerequisites": "HTML, CSS, Javascript",
+      "releasedDate": "12/08/2011",
+      "description": "Ember.js is a productive, battle-tested JavaScript framework for building modern web applications. It includes everything you need to build rich UIs that work on any device.",
+      "webUrl": "https://emberjs.com/"
+    }
+  ]
+}
