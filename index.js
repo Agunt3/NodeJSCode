@@ -36,12 +36,19 @@ const server = http.createServer((req, res)=>{
     
     else if(req.url =='/api'){
 
-        fs.readFile(path.join(__dirname,'public','db.json'), 'utf-8',
-        (err, content)=>{
-            if(err ) throw err ;
-            res.writeHead(200, headers)  
-            res.end(content);
-        });
+       // fs.readFile(path.join(__dirname,'public','db.json'), 'utf-8',
+       // (err, content)=>{
+        //    if(err ) throw err ;
+        //    res.writeHead(200, headers)  
+         //   res.end(content);
+       // });
+        const cursor = client.db("technologies").collection("frontendtechnologies").find({});
+    const results = await cursor.toArray();
+    //console.log(results);
+    const js= (JSON.stringify(results));
+    res.writeHead(200,headers)
+    console.log(js);
+    res.end(js);
 
     }
 
